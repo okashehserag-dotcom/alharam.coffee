@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الحرم | منيو كوفي</title>
+  <meta name="description" content="Premium bilingual coffee menu for Al Haram Coffee." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #f1e3d4;
+      --bg-soft: #f7efe7;
+      --surface: #fffdfa;
+      --surface-2: #fcf8f3;
+      --line: #e0cebd;
+      --line-soft: #ebdfd4;
+      --text: #151210;
+      --muted: #6d6259;
+      --brown: #6b4a35;
+      --brown-2: #8a6248;
+      --white: #ffffff;
+      --radius-xxl: 34px;
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 18px;
+      --radius-sm: 14px;
+      --container: 1200px;
+      --shadow-soft: 0 12px 34px rgba(62, 39, 22, 0.05);
+      --shadow-card: 0 10px 28px rgba(48, 30, 16, 0.035);
+      --transition: 220ms ease;
+      --font-ar: "Cairo", sans-serif;
+      --font-en: "Montserrat", sans-serif;
+    }
+
+    *{ box-sizing: border-box; }
+
+    html{ scroll-behavior: smooth; }
+
+    body{
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,.55), transparent 36%),
+        linear-gradient(180deg, #f3e7dc 0%, #f1e3d4 100%);
+      font-family: var(--font-ar);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    html[lang="en"] body{
+      font-family: var(--font-en);
+    }
+
+    img{
+      display: block;
+      max-width: 100%;
+    }
+
+    a{
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button{
+      font: inherit;
+      color: inherit;
+    }
+
+    .container{
+      width: min(var(--container), calc(100% - 24px));
+      margin-inline: auto;
+    }
+
+    .site-header{
+      padding: 18px 0 10px;
+    }
+
+    .header-shell{
+      background: linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.44));
+      border: 1px solid rgba(107,74,53,.10);
+      border-radius: var(--radius-xxl);
+      padding: 14px 14px 18px;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(8px);
+      animation: fadeUp .5s ease both;
+    }
+
+    .header-top{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-height: 48px;
+      margin-bottom: 12px;
+    }
+
+    .lang-switch{
+      position: absolute;
+      inset-inline-end: 0;
+      top: 0;
+      display: inline-flex;
+      gap: 6px;
+      padding: 5px;
+      background: rgba(255,255,255,.88);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+    }
+
+    .lang-btn{
+      border: 0;
+      background: transparent;
+      border-radius: 999px;
+      min-width: 68px;
+      padding: 9px 14px;
+      cursor: pointer;
+      font-weight: 800;
+      transition: background var(--transition), color var(--transition), transform var(--transition);
+    }
+
+    .lang-btn:hover{
+      transform: translateY(-1px);
+    }
+
+    .lang-btn.active{
+      background: var(--brown);
+      color: var(--white);
+    }
+
+    .brand-wrap{
+      text-align: center;
+      padding: 4px 0 8px;
+    }
+
+    .logo-frame{
+      width: 138px;
+      height: 138px;
+      margin: 0 auto 16px;
+      border-radius: 30px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(180deg, #fffdfa, #f2e8de);
+      border: 1px solid rgba(107,74,53,.10);
+      box-shadow: 0 10px 24px rgba(61, 38, 21, 0.04);
+      padding: 10px;
+    }
+
+    .logo-frame img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .brand-ar{
+      margin: 0;
+      font-size: clamp(2rem, 6vw, 3.6rem);
+      line-height: 1.02;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .brand-en{
+      margin: 8px 0 0;
+      color: var(--brown);
+      font-size: clamp(.86rem, 2vw, 1.04rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .26em;
+    }
+
+    .brand-sub{
+      width: min(760px, 100%);
+      margin: 14px auto 0;
+      color: var(--muted);
+      font-size: .98rem;
+    }
+
+    .top-meta{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .meta-pill{
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.8);
+      border: 1px solid var(--line-soft);
+      color: var(--brown);
+      font-size: .86rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .menu-nav-wrap{
+      position: sticky;
+      top: 10px;
+      z-index: 50;
+      padding: 10px 0 14px;
+    }
+
+    .menu-nav{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(107,74,53,.10);
+      border-radius: 999px;
+      padding: 10px;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(8px);
+      animation: fadeUp .65s ease both;
+    }
+
+    .menu-link{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-weight: 700;
+      color: var(--text);
+      transition: background var(--transition), color var(--transition);
+      white-space: nowrap;
+    }
+
+    .menu-link:hover,
+    .menu-link.is-active{
+      background: var(--white);
+      color: var(--brown);
+    }
+
+    .page{
+      padding: 6px 0 40px;
+    }
+
+    .menu-section{
+      padding: 14px 0 28px;
+      scroll-margin-top: 92px;
+    }
+
+    .section-shell{
+      background: linear-gradient(180deg, rgba(255,255,255,.46), rgba(255,255,255,.22));
+      border: 1px solid rgba(107,74,53,.08);
+      border-radius: var(--radius-xl);
+      padding: 18px;
+    }
+
+    .section-head{
+      margin-bottom: 16px;
+      animation: fadeUp .55s ease both;
+    }
+
+    .section-title{
+      margin: 0;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .section-title::after{
+      content: "";
+      position: absolute;
+      inset-inline-start: 0;
+      bottom: 0;
+      width: 78px;
+      height: 2px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--brown), rgba(107,74,53,.18));
+    }
+
+    .section-sub{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .cards{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(252,248,243,.98));
+      border: 1px solid rgba(107,74,53,.08);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: transform var(--transition), border-color var(--transition), background var(--transition);
+      animation: fadeUp .55s ease both;
+    }
+
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(107,74,53,.16);
+      background: linear-gradient(180deg, rgba(255,255,255,1), rgba(252,248,243,1));
+    }
+
+    .card-media{
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: linear-gradient(180deg, #eadbcf, #e4d2c1);
+      border-bottom: 1px solid rgba(107,74,53,.06);
+    }
+
+    .card-media img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 260ms ease;
+    }
+
+    .card:hover .card-media img{
+      transform: scale(1.02);
+    }
+
+    .card-body{
+      padding: 14px 14px 16px;
+    }
+
+    .card-top{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .item-title{
+      margin: 0;
+      font-size: 1.06rem;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+
+    .item-price{
+      color: var(--brown);
+      font-weight: 800;
+      font-size: .95rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .item-desc{
+      margin: 0;
+      color: var(--muted);
+      font-size: .93rem;
+      line-height: 1.75;
+    }
+
+    .addons{
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .addons-title{
+      margin: 0 0 8px;
+      font-size: .9rem;
+      font-weight: 800;
+    }
+
+    .addons-list{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .addon-pill{
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      color: var(--brown);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: .84rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .addon-pill small{
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 700;
+    }
+
+    .site-footer{
+      padding: 4px 0 28px;
+    }
+
+    .footer-box{
+      text-align: center;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .lang-btn:focus-visible,
+    .menu-link:focus-visible{
+      outline: 2px solid rgba(107,74,53,.28);
+      outline-offset: 2px;
+    }
+
+    @media (min-width: 640px){
+      .header-shell{
+        padding: 16px 18px 20px;
+      }
+
+      .cards{
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+
+      .section-shell{
+        padding: 20px;
+      }
+    }
+
+    @media (min-width: 980px){
+      .site-header{
+        padding: 24px 0 12px;
+      }
+
+      .header-shell{
+        padding: 18px 22px 22px;
+      }
+
+      .cards{
+        grid-template-columns: repeat(3, minmax(0,1fr));
+        gap: 16px;
+      }
+
+      .section-shell{
+        padding: 22px;
+      }
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to{
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior: auto; }
+
+      *,
+      *::before,
+      *::after{
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-shell">
+        <div class="header-top">
+          <div class="lang-switch" id="langSwitch" role="group" aria-label="تبديل اللغة">
+            <button type="button" class="lang-btn active" id="btnAr" aria-pressed="true">AR</button>
+            <button type="button" class="lang-btn" id="btnEn" aria-pressed="false">EN</button>
+          </div>
+        </div>
+
+        <div class="brand-wrap">
+          <div class="logo-frame">
+            <img src="assets/logo.jpg" alt="الحرم logo" id="logoImage">
+          </div>
+
+          <h1 class="brand-ar" id="brandAr">الحرم</h1>
+          <p class="brand-en" id="brandEn">AL HARAM COFFEE</p>
+          <p class="brand-sub" id="brandSub">
+            منيو بهوية هادئة وفخمة، ألوان دافئة مكسورة بالأبيض، وعرض واضح وسهل للمشروبات والحلويات.
+          </p>
+
+          <div class="top-meta">
+            <span class="meta-pill" id="metaOne">Premium Coffee Menu</span>
+            <span class="meta-pill" id="metaTwo">Warm · Clean · Minimal</span>
+            <span class="meta-pill" id="metaThree">Prices in JOD</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="menu-nav-wrap">
+    <div class="container">
+      <nav class="menu-nav" id="menuNav" aria-label="أقسام المنيو">
+        <a href="#hot-drinks" class="menu-link" data-section="hot-drinks" id="navHot">المشروبات الساخنة</a>
+        <a href="#cold-drinks" class="menu-link" data-section="cold-drinks" id="navCold">المشروبات الباردة</a>
+        <a href="#crepe" class="menu-link" data-section="crepe" id="navCrepe">الكريب</a>
+        <a href="#waffle" class="menu-link" data-section="waffle" id="navWaffle">الوافل</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="page">
+    <div class="container" id="menuRoot"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-box" id="footerText">الحرم — Coffee Menu</div>
+    </div>
+  </footer>
+
+  <script>
+    const categories = [
+      {
+        id: "hot-drinks",
+        title_ar: "المشروبات الساخنة",
+        title_en: "Hot Drinks",
+        subtitle_ar: "اختيارات دافئة بطابع قهوة متوازن وهادئ.",
+        subtitle_en: "Warm selections with a balanced and refined coffee profile."
+      },
+      {
+        id: "cold-drinks",
+        title_ar: "المشروبات الباردة",
+        title_en: "Cold Drinks",
+        subtitle_ar: "مشروبات باردة ومنعشة بنكهات نظيفة وواضحة.",
+        subtitle_en: "Refreshing cold drinks with clean and crisp flavors."
+      },
+      {
+        id: "crepe",
+        title_ar: "الكريب",
+        title_en: "Crepe",
+        subtitle_ar: "كريب طازج بإضافات مختارة بدون مبالغة في الأصناف.",
+        subtitle_en: "Fresh crepes with selected toppings and a clean menu structure."
+      },
+      {
+        id: "waffle",
+        title_ar: "الوافل",
+        title_en: "Waffle",
+        subtitle_ar: "وافل طازج بلمسات حلوة بسيطة وفاخرة.",
+        subtitle_en: "Fresh waffles with simple, premium sweet toppings."
+      }
+    ];
+
+    const products = [
+      {
+        id: "espresso",
+        category: "hot-drinks",
+        name_ar: "إسبريسو",
+        name_en: "Espresso",
+        desc_ar: "قهوة مركزة بنكهة واضحة وقوام غني لمحبي الطعم القوي.",
+        desc_en: "A concentrated coffee with a bold flavor and a rich body.",
+        price: 1.80
+      },
+      {
+        id: "cappuccino",
+        category: "hot-drinks",
+        name_ar: "كابتشينو",
+        name_en: "Cappuccino",
+        desc_ar: "إسبريسو مع حليب مبخر ورغوة خفيفة بملمس ناعم.",
+        desc_en: "Espresso with steamed milk and soft foam in a smooth finish.",
+        price: 2.95
+      },
+      {
+        id: "latte",
+        category: "hot-drinks",
+        name_ar: "لاتيه",
+        name_en: "Latte",
+        desc_ar: "توازن جميل بين القهوة والحليب بطابع يومي هادئ.",
+        desc_en: "A smooth daily coffee with a calm balance of milk and espresso.",
+        price: 3.10
+      },
+      {
+        id: "spanish-latte",
+        category: "hot-drinks",
+        name_ar: "سبانش لاتيه",
+        name_en: "Spanish Latte",
+        desc_ar: "حلاوة ناعمة مع نكهة غنية ولمسة كريمية مميزة.",
+        desc_en: "Silky sweetness with a rich flavor and creamy finish.",
+        price: 3.45
+      },
+
+      {
+        id: "iced-latte",
+        category: "cold-drinks",
+        name_ar: "آيس لاتيه",
+        name_en: "Iced Latte",
+        desc_ar: "مشروب بارد ناعم ومنعش يجمع القهوة مع الحليب بشكل خفيف.",
+        desc_en: "A smooth, refreshing cold coffee blended lightly with milk.",
+        price: 3.20
+      },
+      {
+        id: "iced-spanish-latte",
+        category: "cold-drinks",
+        name_ar: "آيس سبانش لاتيه",
+        name_en: "Iced Spanish Latte",
+        desc_ar: "قهوة باردة غنية ومتوازنة بحلاوة أنيقة.",
+        desc_en: "A rich cold coffee with elegant sweetness and balance.",
+        price: 3.65
+      },
+      {
+        id: "iced-americano",
+        category: "cold-drinks",
+        name_ar: "آيس أمريكانو",
+        name_en: "Iced Americano",
+        desc_ar: "طعم نظيف وقوي ومنعش لمحبي القهوة الواضحة.",
+        desc_en: "A clean, bold, and refreshing coffee for a crisp taste.",
+        price: 2.70
+      },
+      {
+        id: "mojito",
+        category: "cold-drinks",
+        name_ar: "موهيتو",
+        name_en: "Mojito",
+        desc_ar: "مشروب بارد منعش بنكهة خفيفة ومظهر مرتب.",
+        desc_en: "A refreshing cold drink with a light flavor and clean finish.",
+        price: 2.95
+      },
+
+      {
+        id: "classic-crepe",
+        category: "crepe",
+        name_ar: "كريب كلاسيك",
+        name_en: "Classic Crepe",
+        desc_ar: "كريب طازج بملمس ناعم مناسب للإضافات المميزة.",
+        desc_en: "Fresh crepe with a soft texture, perfect for premium toppings.",
+        price: 3.50,
+        addons: [
+          { name_ar: "لوتس", name_en: "Lotus", price: 0.70 },
+          { name_ar: "بستاشيو", name_en: "Pistachio", price: 0.90 },
+          { name_ar: "شوكولاتة", name_en: "Chocolate", price: 0.60 }
+        ]
+      },
+      {
+        id: "mini-crepe",
+        category: "crepe",
+        name_ar: "ميني كريب",
+        name_en: "Mini Crepe",
+        desc_ar: "حجم أخف بتقديم أنيق ونفس الإضافات المختارة.",
+        desc_en: "A lighter portion with the same curated topping options.",
+        price: 2.90,
+        addons: [
+          { name_ar: "لوتس", name_en: "Lotus", price: 0.60 },
+          { name_ar: "بستاشيو", name_en: "Pistachio", price: 0.80 }
+        ]
+      },
+      {
+        id: "banana-crepe",
+        category: "crepe",
+        name_ar: "كريب موز",
+        name_en: "Banana Crepe",
+        desc_ar: "كريب بطابع حلو خفيف يناسب الإضافات الكريمية.",
+        desc_en: "A sweet light crepe that pairs well with creamy toppings.",
+        price: 3.80,
+        addons: [
+          { name_ar: "نوتيلا", name_en: "Nutella", price: 0.80 },
+          { name_ar: "بستاشيو", name_en: "Pistachio", price: 0.90 }
+        ]
+      },
+
+      {
+        id: "classic-waffle",
+        category: "waffle",
+        name_ar: "وافل كلاسيك",
+        name_en: "Classic Waffle",
+        desc_ar: "وافل طازج بقرمشة خفيفة وتقديم مرتب.",
+        desc_en: "Fresh waffle with a light crisp edge and refined presentation.",
+        price: 3.75,
+        addons: [
+          { name_ar: "لوتس", name_en: "Lotus", price: 0.70 },
+          { name_ar: "بستاشيو", name_en: "Pistachio", price: 0.90 },
+          { name_ar: "عسل", name_en: "Honey", price: 0.50 }
+        ]
+      },
+      {
+        id: "mini-waffle",
+        category: "waffle",
+        name_ar: "ميني وافل",
+        name_en: "Mini Waffle",
+        desc_ar: "خيار أخف بطابع جميل ومناسب للتقديم السريع.",
+        desc_en: "A lighter waffle option with a neat and elegant feel.",
+        price: 3.00,
+        addons: [
+          { name_ar: "شوكولاتة", name_en: "Chocolate", price: 0.60 },
+          { name_ar: "بستاشيو", name_en: "Pistachio", price: 0.80 }
+        ]
+      },
+      {
+        id: "berry-waffle",
+        category: "waffle",
+        name_ar: "وافل توت",
+        name_en: "Berry Waffle",
+        desc_ar: "وافل ناعم مع لمسة فاكهية خفيفة وشكل جذاب.",
+        desc_en: "Soft waffle with a light fruity touch and appealing presentation.",
+        price: 4.10,
+        addons: [
+          { name_ar: "شوكولاتة بيضاء", name_en: "White Chocolate", price: 0.80 },
+          { name_ar: "بستاشيو", name_en: "Pistachio", price: 0.90 }
+        ]
+      }
+    ];
+
+    const ui = {
+      ar: {
+        htmlLang: "ar",
+        dir: "rtl",
+        brandAr: "الحرم",
+        brandEn: "AL HARAM COFFEE",
+        brandSub: "منيو بهوية هادئة وفخمة، ألوان دافئة مكسورة بالأبيض، وعرض واضح وسهل للمشروبات والحلويات.",
+        metaOne: "Premium Coffee Menu",
+        metaTwo: "Warm · Clean · Minimal",
+        metaThree: "الأسعار بالدينار",
+        navHot: "المشروبات الساخنة",
+        navCold: "المشروبات الباردة",
+        navCrepe: "الكريب",
+        navWaffle: "الوافل",
+        navLabel: "أقسام المنيو",
+        addonsTitle: "إضافات متاحة",
+        currency: "د.أ",
+        footerText: "الحرم — Coffee Menu",
+        placeholder: "ضع صورة المنتج هنا"
+      },
+      en: {
+        htmlLang: "en",
+        dir: "ltr",
+        brandAr: "الحرم",
+        brandEn: "AL HARAM COFFEE",
+        brandSub: "A calm premium menu with warm tones, clean white accents, and an elegant presentation for drinks and desserts.",
+        metaOne: "Premium Coffee Menu",
+        metaTwo: "Warm · Clean · Minimal",
+        metaThree: "Prices in JOD",
+        navHot: "Hot Drinks",
+        navCold: "Cold Drinks",
+        navCrepe: "Crepe",
+        navWaffle: "Waffle",
+        navLabel: "Menu Sections",
+        addonsTitle: "Available Toppings",
+        currency: "JOD",
+        footerText: "Al Haram — Coffee Menu",
+        placeholder: "Add product image here"
+      }
+    };
+
+    const state = {
+      lang: "ar"
+    };
+
+    const el = {
+      html: document.documentElement,
+      btnAr: document.getElementById("btnAr"),
+      btnEn: document.getElementById("btnEn"),
+      brandAr: document.getElementById("brandAr"),
+      brandEn: document.getElementById("brandEn"),
+      brandSub: document.getElementById("brandSub"),
+      metaOne: document.getElementById("metaOne"),
+      metaTwo: document.getElementById("metaTwo"),
+      metaThree: document.getElementById("metaThree"),
+      navHot: document.getElementById("navHot"),
+      navCold: document.getElementById("navCold"),
+      navCrepe: document.getElementById("navCrepe"),
+      navWaffle: document.getElementById("navWaffle"),
+      menuNav: document.getElementById("menuNav"),
+      menuRoot: document.getElementById("menuRoot"),
+      footerText: document.getElementById("footerText")
+    };
+
+    function t(key){
+      return ui[state.lang][key];
+    }
+
+    function getCategoryTitle(category){
+      return state.lang === "ar" ? category.title_ar : category.title_en;
+    }
+
+    function getCategorySubtitle(category){
+      return state.lang === "ar" ? category.subtitle_ar : category.subtitle_en;
+    }
+
+    function getProductName(product){
+      return state.lang === "ar" ? product.name_ar : product.name_en;
+    }
+
+    function getProductDesc(product){
+      return state.lang === "ar" ? product.desc_ar : product.desc_en;
+    }
+
+    function getAddonName(addon){
+      return state.lang === "ar" ? addon.name_ar : addon.name_en;
+    }
+
+    function formatPrice(value){
+      return `${Number(value).toFixed(2)} ${t("currency")}`;
+    }
+
+    function createPlaceholderDataURI(label){
+      const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+          <rect width="800" height="600" fill="#eadbcb"/>
+          <rect x="28" y="28" width="744" height="544" rx="24" fill="#f9f2ea" />
+          <rect x="28" y="28" width="744" height="544" rx="24" fill="none" stroke="#6b4a35" stroke-width="3" stroke-dasharray="12 10"/>
+          <circle cx="400" cy="220" r="58" fill="none" stroke="#6b4a35" stroke-width="10"/>
+          <path d="M346 294h108c30 0 50 20 50 48s-20 48-50 48H332c-26 0-48-22-48-48v-32h62" fill="none" stroke="#6b4a35" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="50%" y="466" text-anchor="middle" fill="#6b4a35" font-family="Arial, sans-serif" font-size="28">${label}</text>
+          <text x="50%" y="506" text-anchor="middle" fill="#6b4a35" font-family="Arial, sans-serif" font-size="18">assets/products/&lt;id&gt;.jpg</text>
+        </svg>
+      `;
+      return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+    }
+
+    function setSafeImage(img, src, alt){
+      img.alt = alt;
+      img.onerror = () => {
+        img.onerror = null;
+        img.src = createPlaceholderDataURI(t("placeholder"));
+      };
+      img.src = src;
+    }
+
+    function createCard(product, index){
+      const card = document.createElement("article");
+      card.className = "card";
+      card.style.animationDelay = `${index * 45}ms`;
+
+      const media = document.createElement("div");
+      media.className = "card-media";
+
+      const image = document.createElement("img");
+      image.loading = "lazy";
+      setSafeImage(image, `assets/products/${product.id}.jpg`, getProductName(product));
+      media.appendChild(image);
+
+      const body = document.createElement("div");
+      body.className = "card-body";
+
+      const top = document.createElement("div");
+      top.className = "card-top";
+
+      const title = document.createElement("h3");
+      title.className = "item-title";
+      title.textContent = getProductName(product);
+
+      const price = document.createElement("div");
+      price.className = "item-price";
+      price.textContent = formatPrice(product.price);
+
+      const desc = document.createElement("p");
+      desc.className = "item-desc";
+      desc.textContent = getProductDesc(product);
+
+      top.appendChild(title);
+      top.appendChild(price);
+      body.appendChild(top);
+      body.appendChild(desc);
+
+      if (Array.isArray(product.addons) && product.addons.length){
+        const addons = document.createElement("div");
+        addons.className = "addons";
+
+        const addonsTitle = document.createElement("p");
+        addonsTitle.className = "addons-title";
+        addonsTitle.textContent = t("addonsTitle");
+
+        const addonsList = document.createElement("div");
+        addonsList.className = "addons-list";
+
+        product.addons.forEach(addon => {
+          const pill = document.createElement("span");
+          pill.className = "addon-pill";
+          pill.innerHTML = `${getAddonName(addon)} <small>+ ${formatPrice(addon.price)}</small>`;
+          addonsList.appendChild(pill);
+        });
+
+        addons.appendChild(addonsTitle);
+        addons.appendChild(addonsList);
+        body.appendChild(addons);
+      }
+
+      card.appendChild(media);
+      card.appendChild(body);
+
+      return card;
+    }
+
+    function createSection(category){
+      const section = document.createElement("section");
+      section.className = "menu-section";
+      section.id = category.id;
+
+      const shell = document.createElement("div");
+      shell.className = "section-shell";
+
+      const head = document.createElement("div");
+      head.className = "section-head";
+
+      const title = document.createElement("h2");
+      title.className = "section-title";
+      title.textContent = getCategoryTitle(category);
+
+      const subtitle = document.createElement("p");
+      subtitle.className = "section-sub";
+      subtitle.textContent = getCategorySubtitle(category);
+
+      head.appendChild(title);
+      head.appendChild(subtitle);
+
+      const cards = document.createElement("div");
+      cards.className = "cards";
+
+      const sectionProducts = products.filter(product => product.category === category.id);
+      sectionProducts.forEach((product, index) => {
+        cards.appendChild(createCard(product, index));
+      });
+
+      shell.appendChild(head);
+      shell.appendChild(cards);
+      section.appendChild(shell);
+
+      return section;
+    }
+
+    function renderMenu(){
+      el.menuRoot.innerHTML = "";
+      categories.forEach(category => {
+        el.menuRoot.appendChild(createSection(category));
+      });
+    }
+
+    function applyLanguage(){
+      el.html.lang = ui[state.lang].htmlLang;
+      el.html.dir = ui[state.lang].dir;
+
+      el.brandAr.textContent = t("brandAr");
+      el.brandEn.textContent = t("brandEn");
+      el.brandSub.textContent = t("brandSub");
+      el.metaOne.textContent = t("metaOne");
+      el.metaTwo.textContent = t("metaTwo");
+      el.metaThree.textContent = t("metaThree");
+      el.navHot.textContent = t("navHot");
+      el.navCold.textContent = t("navCold");
+      el.navCrepe.textContent = t("navCrepe");
+      el.navWaffle.textContent = t("navWaffle");
+      el.menuNav.setAttribute("aria-label", t("navLabel"));
+      el.footerText.textContent = t("footerText");
+
+      el.btnAr.classList.toggle("active", state.lang === "ar");
+      el.btnEn.classList.toggle("active", state.lang === "en");
+      el.btnAr.setAttribute("aria-pressed", String(state.lang === "ar"));
+      el.btnEn.setAttribute("aria-pressed", String(state.lang === "en"));
+
+      renderMenu();
+    }
+
+    function updateActiveNav(){
+      const sections = document.querySelectorAll(".menu-section");
+      const links = document.querySelectorAll(".menu-link");
+
+      let currentId = "";
+
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 140 && rect.bottom >= 140){
+          currentId = section.id;
+        }
+      });
+
+      links.forEach(link => {
+        link.classList.toggle("is-active", link.dataset.section === currentId);
+      });
+    }
+
+    el.btnAr.addEventListener("click", () => {
+      state.lang = "ar";
+      applyLanguage();
+      updateActiveNav();
+    });
+
+    el.btnEn.addEventListener("click", () => {
+      state.lang = "en";
+      applyLanguage();
+      updateActiveNav();
+    });
+
+    window.addEventListener("scroll", updateActiveNav, { passive: true });
+    window.addEventListener("load", updateActiveNav);
+
+    applyLanguage();
+    updateActiveNav();
+  </script>
+</body>
+</html>
